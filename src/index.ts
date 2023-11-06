@@ -1,8 +1,7 @@
-import "dotenv/config";
-import SetupServer from "./server";
+import SetupExpress from "./server";
+(() => {
+  const app = new SetupExpress();
 
-const port = process.env.PORT as number | undefined;
-const server = new SetupServer(port);
-
-server.setupServer();
-server.start();
+  app.init();
+  app.start();
+})();

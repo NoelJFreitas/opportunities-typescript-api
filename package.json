@@ -28,6 +28,7 @@
     "module-alias": "^2.2.3"
   },
   "scripts": {
-    "start:dev": "nodemon --exec npx ts-node src/index.ts"
+    "start:dev": "nodemon --exec npx ts-node src/index.ts",
+    "test:functional": "jest --projects ./test --runInBand"
   }
 }
