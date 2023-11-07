@@ -1,25 +1,35 @@
-import express from "express";
+import "./util/module-alias";
+import express, { Application } from "express";
+import routes from "@src/routes";
+import * as database from "@src/database";
 
 export default class SetupExpress {
-  private static app = express();
+  private app = express();
   constructor(private readonly port = 3000) {}
 
   private setupExpress(): void {
-    SetupExpress.app.use(express.json());
+    this.app.use(express.json());
   }
 
   private setupControllers(): void {
-    SetupExpress.app.get("/", (_, res) => res.send("teste"));
+    this.app.use(routes);
   }
 
-  public init(): void {
+  private async databaseSetup(): Promise<void> {
+    await database.connect();
+  }
+
+  public async init(): Promise<void> {
     this.setupExpress();
     this.setupControllers();
+    await this.databaseSetup();
   }
 
   public start(): void {
-    SetupExpress.app.listen(this.port, () =>
-      console.info(`listening on ${this.port}`)
-    );
+    this.app.listen(this.port, () => console.info(`listening on ${this.port}`));
+  }
+
+  public getApp(): Application {
+    return this.app;
   }
 }
