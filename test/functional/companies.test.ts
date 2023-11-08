@@ -8,9 +8,7 @@ describe("companies functional test", () => {
       city: "Vitoria",
     };
 
-    const response = await global.testRequest
-      .post("/companies")
-      .send(newCompany);
+    const response = await global.testRequest.post("/company").send(newCompany);
 
     expect(response.status).toBe(201);
     expect(response.body).toEqual({
@@ -27,9 +25,7 @@ describe("companies functional test", () => {
       city: "Vitoria",
     };
 
-    const response = await global.testRequest
-      .post("/companies")
-      .send(newCompany);
+    const response = await global.testRequest.post("/company").send(newCompany);
 
     expect(response.status).toBe(422);
     expect(response.body).toEqual({
@@ -47,9 +43,7 @@ describe("companies functional test", () => {
       city: "Vitoria",
     };
 
-    const response = await global.testRequest
-      .post("/companies")
-      .send(newCompany);
+    const response = await global.testRequest.post("/company").send(newCompany);
 
     expect(response.status).toBe(409);
     expect(response.body).toEqual({

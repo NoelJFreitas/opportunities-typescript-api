@@ -4,8 +4,8 @@ import supertest from "supertest";
 let server: SetupServer;
 beforeAll(async () => {
   server = new SetupServer();
-  //   await server.init();
+  await server.init();
   global.testRequest = supertest(server.getApp());
 });
 
-// afterAll(async () => await server.close());
+afterAll(async () => await server.close());
