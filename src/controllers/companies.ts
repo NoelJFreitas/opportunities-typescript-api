@@ -1,9 +1,16 @@
-import { Company } from "@src/models/company";
-import { Request, Response } from "express";
+// import { Company } from "@src/models/company";
+import { NextFunction, Request, Response } from "express";
 
 export default class CompaniesController {
-  public async create(req: Request, res: Response): Promise<void> {
-    const company = await new Company(req.body).save();
-    res.status(201).send(company);
+  public async create(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      res.status(201).send({ code: 201, error: "criado" });
+    } catch (err) {
+      next(err);
+    }
   }
 }

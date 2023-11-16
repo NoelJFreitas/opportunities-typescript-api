@@ -8,6 +8,12 @@ export class ApiError extends Error {
   }
 }
 
+export class BadRequestError extends ApiError {
+  constructor(message: string) {
+    super(message, 400);
+  }
+}
+
 export class UnauthorizedError extends ApiError {
   constructor(message: string) {
     super(message, 401);

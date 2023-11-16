@@ -8,7 +8,6 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log("chamou a função");
   const code = err.statusCode ?? 500;
   const message = err.statusCode ? err.message : "Internal Server Error";
   res.status(code).send({ code, message });
